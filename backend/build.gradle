@@ -22,9 +22,21 @@ jar {
 }
 
 jar {
+	manifest {
+	    attributes(
+	            "Implementation-Title": "stuff",
+	            "Implementation-Version": rootProject.version,
+	            "Main-Class": mainClassName )
+	}
   from("../frontend/dist") {
-    into "static"
+    into "assets"
   }
+}
+
+run {
+    main mainClassName
+    args "server"
+    args "config.yml"
 }
 
 jar.dependsOn(":frontend:assemble")
