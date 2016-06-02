@@ -2,13 +2,12 @@ package gradtrader;
 
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
 
 public class App extends Application<Configuration> {
-
-    public static final String ASSETS_SERVLET_NAME = "assets-servlet";
 
     public static void main(String[] args) throws Exception {
     	new App().run(new String[]{"server", "config.yml"});
@@ -16,11 +15,9 @@ public class App extends Application<Configuration> {
 
     @Override
     public void initialize(Bootstrap<Configuration> bootstrap) {
-
+    	bootstrap.addBundle(new AssetsBundle("/assets/", "/", "index.html"));
     }
 
     @Override
-    public void run(Configuration configuration, Environment environment) {
-
-    }
+    public void run(Configuration configuration, Environment environment) {}
 }

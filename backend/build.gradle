@@ -10,21 +10,47 @@ targetCompatibility = 1.8
 dependencies {
     compile "io.dropwizard:dropwizard-core:0.9.2"
     compile "io.dropwizard:dropwizard-assets:0.9.2"
+	compile group: 'org.projectlombok', name: 'lombok', version: '1.14.2'
 }
 
 repositories {
     mavenCentral()
 }
 
-jar {
-  baseName = "GradTrader"
-  version = "${rootProject.version}"
-}
+//jar {
+//  baseName = "GradTrader"
+//  version = "${rootProject.version}"
+//}
 
 jar {
-  from("../frontend/dist") {
-    into "static"
-  }
+    manifest {
+        attributes(
+                "Implementation-Title": "thing",
+                "Implementation-Version": "${rootProject.version}",
+                "Main-Class": "gradtrader.App" )
+    }
+    from('../viewer') {
+        include 'dist/index.html'
+        include 'dist/main.js'
+        into "assets"
+    }
+    dependsOn ":frontend:assemble"
 }
-
-jar.dependsOn(":frontend:assemble")
+shadowJar {
+    from('../frontend') {
+        include 'dist/index.html'
+        include 'dist/main.js'
+        into "assets"
+    }
+    dependsOn ":frontend:assemble"
+}
+runShadow {
+    args "server"
+    args "config.yml"
+}
+run {
+    main "gradtrader.App"
+    args "server"
+    args "config.yml"
+}
+build.dependsOn ":frontend:build"
