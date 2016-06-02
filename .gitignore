@@ -12,7 +12,7 @@
 hs_err_pid*
 
 # Gradle
-.gradle
+.gradle/
 build/
 
 # Eclipse
@@ -20,6 +20,10 @@ build/
 .classpath
 .cache-main
 .settings/
+
+# Intellij
+.idea/
+
 
 # Frontend
 node_modules/

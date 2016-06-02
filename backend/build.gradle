@@ -1,6 +1,13 @@
+buildscript {
+    repositories { jcenter() }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
 
 apply plugin: "java"
-apply plugin: "application"
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 mainClassName = "gradtrader.App"
 
@@ -16,21 +23,23 @@ repositories {
     mavenCentral()
 }
 
-jar {
-  baseName = "GradTrader"
-  version = "${rootProject.version}"
-}
 
 jar {
-	manifest {
-	    attributes(
-	            "Implementation-Title": "stuff",
-	            "Implementation-Version": rootProject.version,
-	            "Main-Class": mainClassName )
-	}
-  from("../frontend/dist") {
-    into "assets"
-  }
+//    manifest {
+//        attributes(
+//                "Implementation-Title": "stuff",
+//                "Implementation-Version": rootProject.version,
+//                "Main-Class": mainClassName
+//        )
+//    }
+    from("../frontend/dist") {
+        into "assets"
+    }
+}
+
+shadowJar {
+    archiveName = "gradtrader.jar"
+    mergeServiceFiles()
 }
 
 run {
@@ -40,3 +49,6 @@ run {
 }
 
 jar.dependsOn(":frontend:assemble")
+
+
+task stage(dependsOn: ['clean', 'shadowJar'])
