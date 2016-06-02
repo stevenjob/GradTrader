@@ -23,20 +23,6 @@ repositories {
     mavenCentral()
 }
 
-
-jar {
-//    manifest {
-//        attributes(
-//                "Implementation-Title": "stuff",
-//                "Implementation-Version": rootProject.version,
-//                "Main-Class": mainClassName
-//        )
-//    }
-    from("../frontend/dist") {
-        into "assets"
-    }
-}
-
 shadowJar {
     archiveName = "gradtrader.jar"
     mergeServiceFiles()
@@ -49,6 +35,6 @@ run {
 }
 
 jar.dependsOn(":frontend:assemble")
-
+shadowJar.dependsOn(":frontend:assemble")
 
 task stage(dependsOn: ['clean', 'shadowJar'])

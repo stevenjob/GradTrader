@@ -6,3 +6,5 @@ build/
 .classpath
 .cache-main
 .settings/
+
+src/main/resources/assets/

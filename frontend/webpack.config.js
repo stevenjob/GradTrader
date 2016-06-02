@@ -11,7 +11,7 @@ module.exports = {
   ],
   output: {
     publicPath: '/',
-    path: 'dist',
+    path: '../backend/src/main/resources/assets',
     filename: 'main.js'
   },
   devtool: 'source-map',
