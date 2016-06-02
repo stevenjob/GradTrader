@@ -1,0 +1,30 @@
+
+apply plugin: "java"
+apply plugin: "application"
+
+mainClassName = "gradtrader.App"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "io.dropwizard:dropwizard-core:0.9.2"
+    compile "io.dropwizard:dropwizard-assets:0.9.2"
+}
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+  baseName = "GradTrader"
+  version = "${rootProject.version}"
+}
+
+jar {
+  from("../frontend/dist") {
+    into "static"
+  }
+}
+
+jar.dependsOn(":frontend:assemble")

@@ -18,6 +18,5 @@ task test(type: NpmTask) {
     args = ['test']
 }
 
-check.dependsOn(test)
 bundle.dependsOn(npm_install)
 assemble.dependsOn(bundle)
