@@ -14,13 +14,18 @@ build:
         npm config set cache "$WERCKER_CACHE_DIR/npm"
         npm install
     - script:
+      name: frontend lint
+      code: |
+        cd frontend
+        npm run lint
+    - script:
       name: frontend test
       code: |
         cd frontend
         npm test
-# deploy:
-#   steps:
-#     - heroku-deploy:
-#         key: $HEROKU_KEY
-#         user: $HEROKU_USER
-#         app-name: $HEROKU_APP_NAME
+deploy:
+  steps:
+    - heroku-deploy:
+        key: $HEROKU_KEY
+        user: $HEROKU_USER
+        app-name: $HEROKU_APP_NAME
