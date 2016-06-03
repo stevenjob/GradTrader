@@ -2,8 +2,12 @@ plugins {
     id "com.moowork.node" version "0.12"
 }
 
-//defines a basic project lifecycle
 apply plugin: 'base'
+apply plugin: 'com.moowork.node'
+
+node {
+    download = true
+}
 
 task bundle(type: NpmTask) {
   //runs 'npm run bundle'
