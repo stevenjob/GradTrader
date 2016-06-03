@@ -24,6 +24,9 @@ repositories {
 }
 
 shadowJar {
+    from("../frontend/dist") {
+        into "assets"
+    }
     archiveName = "gradtrader.jar"
     mergeServiceFiles()
 }
