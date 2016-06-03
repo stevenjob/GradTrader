@@ -5,4 +5,4 @@ server:
   adminContextPath: /admin
   connector:
     type: http
-    port: 4000
+    port: 8080
