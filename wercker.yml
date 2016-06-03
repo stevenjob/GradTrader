@@ -1,4 +1,4 @@
-box: java
+box: rsillem/hackathon:latest
 build:
   steps:
     - script:
