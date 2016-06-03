@@ -6,18 +6,18 @@ build:
       code: |
         chmod +x gradlew
         ./gradlew --project-cache-dir=$WERCKER_CACHE_DIR :backend:test
-    # - script:
-    #   name: frontend install
-    #   code: |
-    #     cd frontend
-    #     mkdir -p "$WERCKER_CACHE_DIR/npm"
-    #     npm config set cache "$WERCKER_CACHE_DIR/npm"
-    #     npm install
-    # - script:
-    #   name: frontend test
-    #   code: |
-    #     cd frontend
-    #     npm test
+    - script:
+      name: frontend install
+      code: |
+        cd frontend
+        mkdir -p "$WERCKER_CACHE_DIR/npm"
+        npm config set cache "$WERCKER_CACHE_DIR/npm"
+        npm install
+    - script:
+      name: frontend test
+      code: |
+        cd frontend
+        npm test
 # deploy:
 #   steps:
 #     - heroku-deploy:
