@@ -23,7 +23,6 @@ build/
 # Intellij
 .idea/
 
-
 # Frontend
 node_modules/
 /bin/

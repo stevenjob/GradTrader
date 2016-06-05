@@ -1,46 +1,30 @@
 const webpack = require('webpack');
 const path = require('path');
+const sharedConfig = require('./webpack.shared.config');
 
-module.exports = {
+const devConfig = {
   entry: [
-    './src/main.jsx',
-    './assets/styles/main.scss',
-    './assets/index.html',
+    './src/main',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server'
   ],
   output: {
     publicPath: '/',
-    path: 'dist',
+    path: '../backend/src/main/resources/assets',
     filename: 'main.js'
-  },
-  devtool: 'source-map',
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src/'),
-        loaders: ['react-hot', 'babel']
-      },
-      {
-        test: /\.html$/,
-        include: path.resolve(__dirname, 'assets/'),
-        loader: 'file-loader?name=[name].[ext]'
-      },
-      {
-        test: /\.scss$/,
-        include: path.resolve(__dirname, 'assets/styles/'),
-        loader: 'style!css!sass'
-      }
-    ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
+  devtool: 'source-map',
   debug: true,
   devServer: {
     contentBase: './',
     port: 3000
   }
 };
+
+module.exports = Object.assign({},
+  sharedConfig,
+  devConfig
+);
