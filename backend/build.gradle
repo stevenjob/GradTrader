@@ -39,5 +39,3 @@ run {
 
 jar.dependsOn(":frontend:assemble")
 shadowJar.dependsOn(":frontend:assemble")
-
-task stage(dependsOn: ['clean', 'shadowJar'])
