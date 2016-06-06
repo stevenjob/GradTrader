@@ -22,7 +22,6 @@ build/
 
 # Intellij
 .idea/
-*.iml
 **/*.iml
 
 # Frontend
