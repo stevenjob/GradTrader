@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const sharedConfig = require('./webpack.shared.config');
 
 const prodConfig = {
@@ -8,7 +9,14 @@ const prodConfig = {
     publicPath: '/',
     path: 'dist',
     filename: 'main.js'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': "'production'"
+      }
+    })
+  ]
 };
 
 module.exports = Object.assign({},
