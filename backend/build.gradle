@@ -37,5 +37,6 @@ run {
     args "config.yml"
 }
 
+run.dependsOn(":frontend:bundleDev")
 jar.dependsOn(":frontend:assemble")
 shadowJar.dependsOn(":frontend:assemble")
