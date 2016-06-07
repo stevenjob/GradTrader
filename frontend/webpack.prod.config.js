@@ -13,12 +13,12 @@ const prodConfig = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': "'production'"
+        NODE_ENV: "'production'"
       }
     }),
     new webpack.ProvidePlugin({
       'es6-promise': 'es6-promise',
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     })
   ]
 };
