@@ -5,19 +5,19 @@ const devConfig = {
   entry: [
     './src/main',
     'webpack-dev-server/client?http://0.0.0.0:8000',
-    'webpack/hot/only-dev-server'
+    'webpack/hot/only-dev-server',
   ],
   output: {
     publicPath: '/',
     path: '../backend/src/main/resources/assets',
-    filename: 'main.js'
+    filename: 'main.js',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       'es6-promise': 'es6-promise',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
   ],
   devtool: 'source-map',
   debug: true,
@@ -27,9 +27,9 @@ const devConfig = {
     colors: true,
     port: 8000,
     proxy: {
-      '/api/*': 'http://0.0.0.0:8080/'
-    }
-  }
+      '/api/*': 'http://0.0.0.0:8080/',
+    },
+  },
 
 };
 
